@@ -35,6 +35,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.nio.file.Files;
 import java.util.Date;
 import java.util.zip.Deflater;
 import java.util.zip.ZipEntry;
@@ -222,7 +223,7 @@ public class RequestAnalyzerWebConsole extends HttpServlet {
         InputStream input = null;
         OutputStream output = null;
         try {
-            result = File.createTempFile(getServletName(), ".tmp");
+            result = Files.createTempFile(getServletName(), ".tmp").toFile();
             input = new FileInputStream(this.logFile);
             output = new FileOutputStream(result);
             IOUtils.copy(input, output);
